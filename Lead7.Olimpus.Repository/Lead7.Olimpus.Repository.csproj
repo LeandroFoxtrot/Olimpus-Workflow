@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{59156D3E-2071-4114-81E6-A962D4ABCAED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lead7.Olimpus.Repository</RootNamespace>
+    <AssemblyName>Lead7.Olimpus.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementations\Business\ParticipanteRepository.cs" />
+    <Compile Include="Implementations\Config\EmpresaRepository.cs" />
+    <Compile Include="Implementations\Config\MenuRepository.cs" />
+    <Compile Include="Implementations\Config\ModuloRepository.cs" />
+    <Compile Include="Implementations\Config\PapelRepository.cs" />
+    <Compile Include="Implementations\Config\PerfilRepository.cs" />
+    <Compile Include="Implementations\Config\RegraRepository.cs" />
+    <Compile Include="Implementations\Config\UsuarioRepository.cs" />
+    <Compile Include="Interfaces\Business\IParticipanteRepository.cs" />
+    <Compile Include="Interfaces\Config\IEmpresaRepository.cs" />
+    <Compile Include="Interfaces\Config\IMenuRepository.cs" />
+    <Compile Include="Interfaces\Config\IModuloRepository.cs" />
+    <Compile Include="Interfaces\Config\IPapelRepository.cs" />
+    <Compile Include="Interfaces\Config\IPerfilRepository.cs" />
+    <Compile Include="Interfaces\Config\IRegraRepository.cs" />
+    <Compile Include="Interfaces\Config\IUsuarioRepository.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="RepositoryBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Implementations\Workflow\" />
+    <Folder Include="Interfaces\Workflow\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lead7.Olimpus.Domain\Lead7.Olimpus.Domain.csproj">
+      <Project>{36e8622d-5756-48f4-b8b0-9be7d4fcf26a}</Project>
+      <Name>Lead7.Olimpus.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

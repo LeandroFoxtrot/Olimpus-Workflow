@@ -1,0 +1,122 @@
+﻿@using Lead7.Olimpus.Domain.Config
+@using MyResources = Lead7.Olimpus.Web.Resources
+
+@{
+    var session = (Usuario)Session["Login"];
+    var imagem = session == null ? Url.Content("~/images/user.png") : Url.Content("~/images/user.png");
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>@ViewBag.Title</title>
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Fonts/css")
+        @Styles.Render("~/Content/animate")
+        @Styles.Render("~/Content/custom.css")
+        @Styles.Render("~/Content/maps")
+        @Styles.Render("~/Content/icheck")
+        @Styles.Render("~/Content/messagebox")
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/nprogress")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+
+    <body class="nav-md">
+        <div class="container body">
+            <div class="main_container">
+                
+                @if (session != null)
+                {
+                    <!-- Menu -->
+                    <div class="main_container">
+                        @Html.Partial("Menu")
+                    </div>
+                    
+                    <!-- Barra de Navegação -->
+                    <div class="top_nav">
+                        <div class="nav_menu">
+                            <nav class="" role="navigation">
+                                <div class="nav toggle">
+                                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                                </div>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="">
+                                        <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <img src="@imagem" alt="">@session.Nome<span class=" fa fa-angle-down"></span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
+                                            <li>
+                                                <a href="/Usuario/ChangePwd"><i class="fa fa-unlock-alt pull-left"></i> @MyResources.Layout.AlterarSenha</a>
+                                            </li>
+                                            <li>
+                                                <a href="/Ferramentas/Index"><i class="fa fa-wrench pull-left"></i> @MyResources.Layout.Ferramentas</a>
+                                            </li>
+                                            <li>
+                                                <a href="/Help/Index"><i class="fa fa-question-circle pull-left"></i>Help</a>
+                                            </li>
+                                            <li>
+                                                <a href="/Usuario/DoLogoff"><i class="fa fa-sign-out pull-left"></i> Log Out</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                }
+
+                <div id="main" class="right_col" role="main">@RenderBody()</div>
+            </div>
+        </div>
+
+        <div id="custom_notifications" class="custom-notifications dsp_none">
+            <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
+            <div class="clearfix"></div>
+            <div id="notif-group" class="tabbed_notifications"></div>
+        </div>
+
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/gauge")
+        @Scripts.Render("~/bundles/chart")
+        @Scripts.Render("~/bundles/bootstrap_progress")
+        @Scripts.Render("~/bundles/icheck")
+        @Scripts.Render("~/bundles/daterangepicker")
+        @Scripts.Render("~/bundles/custom")
+        @Scripts.Render("~/bundles/flot")
+        @Scripts.Render("~/bundles/maps")
+        @Scripts.Render("~/bundles/pace")
+        @Scripts.Render("~/bundles/skycons")
+        @Scripts.Render("~/bundles/messagebox")
+
+        <script>
+            var icons = new Skycons({
+                    "color": "#73879C"
+                }),
+                list = [
+                    "clear-day", "clear-night", "partly-cloudy-day",
+                    "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+                    "fog"
+                ],
+                i;
+
+            for (i = list.length; i--;)
+                icons.set(list[i], list[i]);
+
+            icons.play();
+
+            Lobibox.notify.DEFAULTS = $.extend({}, Lobibox.notify.DEFAULTS, {
+                soundPath: '../Scripts/messagebox/dist/sounds/'
+            });
+        </script>
+
+        @RenderSection("scripts", false)
+    </body>
+</html>

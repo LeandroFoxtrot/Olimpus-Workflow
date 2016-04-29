@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Lead7.Olimpus.Web.WebApiApplication" Language="C#" %>

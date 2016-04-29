@@ -1,0 +1,165 @@
+﻿@using MyResources = Lead7.Olimpus.Web.Resources
+@model IList<Lead7.Olimpus.Web.Models.Config.Empresa.EmpresaModel>
+
+<div id="divEmpresas" class="col-md-12 col-sm-12 col-xs-12" style="width: 80%">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>@MyResources.Empresa.Titulo</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table class="table table-striped responsive-utilities jambo_table bulk_action">
+                <thead>
+                <tr class="headings">
+                    <th class="column-title" style="width: 10%">ID </th>
+                    <th class="column-title" style="width: 20%">@MyResources.Empresa.Logotipo </th>
+                    <th class="column-title" >@MyResources.Empresa.NomeEmpresa </th>
+                    <th class="column-title no-link last" style="text-align: center; width: 20%">
+                        <span class="nobr">@MyResources.Layout.Action</span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @if (!Model.Any())
+                {
+                    <tr class="even pointer">
+                        <td class="a-center" colspan="5">@MyResources.Empresa.SemRegistros</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        var base64 = Convert.ToBase64String(item.Logotipo);
+                        var imgSrc = base64 == "" ? Url.Content("~/images/no-images.png") : String.Format("data:image/png;base64,{0}", base64);
+
+                        <tr class="even pointer">
+                            <td class=" " style="vertical-align: middle">@item.Id</td>
+                            <td class=" " style="vertical-align: middle"><img src="@imgSrc" alt="" style="width: 120px; height: 80px"/> </td>
+                            <td class=" " style="vertical-align: middle">@item.NomeEmpresa </td>
+                            <td class=" last" style="text-align: center; vertical-align: middle">
+                                <a href="/Empresa/Edit/@item.Id" title="@MyResources.Layout.View" class="btn btn-default btn-group-xs"><i class="fa fa-edit"></i> @MyResources.Layout.View</a>
+                                <a href="#" onclick="javascript: confirmar(@item.Id);" title="@MyResources.Layout.Delete" class="btn btn-default btn-group-xs"><i class="fa fa-remove"></i> @MyResources.Layout.Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                </tbody>
+            </table>
+            <a href="@Url.Action("Create", "Empresa")" title="@MyResources.Empresa.Novo" class="btn btn-default submit">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="body-content"> @MyResources.Empresa.Novo</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        function confirmar(value) {
+            Lobibox.confirm({
+                msg: '@MyResources.Empresa.MsgConfirm',
+                title: '@MyResources.Empresa.Titulo',
+                buttons: {
+                    yes: {
+                        'class': 'lobibox-btn lobibox-btn-yes',
+                        text: '@MyResources.Layout.Yes',
+                        closeOnClick: true
+                    },
+                    no: {
+                        'class': 'lobibox-btn lobibox-btn-no',
+                        text: '@MyResources.Layout.No',
+                        closeOnClick: true
+                    }
+                },
+                callback: function(lobibox, type) {
+                    if (type === 'yes') {
+                        var request = $.ajax({
+                            url: '@Url.Content("../Empresa/Delete")',
+                            method: 'POST',
+                            data: { id: value },
+                            dataType: 'html'
+                        });
+
+                        request.done(function(data) {
+                            $('#main').html(data);
+                            Lobibox.notify('success', {
+                                title: '@MyResources.Layout.Sucesso',
+                                msg: '@MyResources.Layout.MsgDelOK'
+                            });
+                        });
+
+                        request.fail(function(jqXHR, textStatus) {
+                            Lobibox.notify('error', {
+                                title: '@MyResources.Layout.Erro',
+                                msg: textStatus
+                            });
+                        });
+                    }
+                }
+            });
+        }
+
+        function excluirmodulo(idmodulo, idempresa) {
+            Lobibox.confirm({
+                msg: '@MyResources.Modulo.MsgConfirm',
+                title: '@MyResources.Empresa.Titulo',
+                buttons: {
+                    yes: {
+                        'class': 'lobibox-btn lobibox-btn-yes',
+                        text: '@MyResources.Layout.Yes',
+                        closeOnClick: true
+                    },
+                    no: {
+                        'class': 'lobibox-btn lobibox-btn-no',
+                        text: '@MyResources.Layout.No',
+                        closeOnClick: true
+                    }
+                },
+                callback: function (lobibox, type) {
+                    if (type === 'yes') {
+                        var request = $.ajax({
+                            url: '@Url.Content("../Empresa/DeleteModulo")',
+                            method: 'POST',
+                            data: { idModulo: idmodulo, idEmpresa: idempresa },
+                            dataType: 'html'
+                        });
+
+                        request.done(function (data) {
+                            $('#main').html(data);
+                            Lobibox.notify('success', {
+                                title: '@MyResources.Layout.Sucesso',
+                                msg: '@MyResources.Layout.MsgDelOK'
+                            });
+                        });
+
+                        request.fail(function (jqXHR, textStatus) {
+                            Lobibox.notify('error', {
+                                title: '@MyResources.Layout.Erro',
+                                msg: textStatus
+                            });
+                        });
+                    }
+                }
+            });
+        }
+
+        function habilitarmodulo(idmodulo, idempresa) {
+            
+        }
+
+        function registrarmodulo(idmodulo, idempresa) {
+
+        }
+    </script>
+}
+
+

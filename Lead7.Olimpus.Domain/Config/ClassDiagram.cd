@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Lead7.Olimpus.Domain.Config.Empresa">
+    <Position X="5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAgQAAAAAQAAAAAIAAAAAAAAEAAAA=</HashCode>
+      <FileName>Config\Empresa.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Modulos" />
+      <Property Name="Perfis" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Lead7.Olimpus.Domain.Config.Perfil">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAgAAAAAAAAAAAAIAAAAAAAAEAAgA=</HashCode>
+      <FileName>Config\Perfil.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Papeis" />
+      <Property Name="Usuarios" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Lead7.Olimpus.Domain.Config.Usuario">
+    <Position X="7.25" Y="5.75" Width="1.5" />
+    <InheritanceLine Type="Lead7.Olimpus.Domain.Entity&lt;TPrimaryKey&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="11.25" Y="1.853" />
+        <Point X="11.25" Y="6.688" />
+        <Point X="8.75" Y="6.688" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgQAAAAAAACAAAIEAAAAABAEAAAA=</HashCode>
+      <FileName>Config\Usuario.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DadosGerais" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Perfis" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Lead7.Olimpus.Domain.Config.DadosGerais">
+    <Position X="12.25" Y="5.75" Width="1.5" />
+    <InheritanceLine Type="Lead7.Olimpus.Domain.Entity&lt;TPrimaryKey&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.438" Y="1.853" />
+        <Point X="11.438" Y="6.75" />
+        <Point X="12.25" Y="6.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>gAAAAAAEACAAAAAEggAAQAAAAAAAAIAgAAAEAAAAAAA=</HashCode>
+      <FileName>Config\DadosGerais.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Usuario" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Lead7.Olimpus.Domain.Config.Papel">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgQAAAAAAAAAAAIAAAABAAAEAAAA=</HashCode>
+      <FileName>Config\Papel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Regras" />
+      <Property Name="Perfis" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Lead7.Olimpus.Domain.Config.Regra">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAgAAAAABAAAAAAIAABEAAAAAAAAA=</HashCode>
+      <FileName>Config\Regra.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Objeto" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Lead7.Olimpus.Domain.Entity&lt;TPrimaryKey&gt;">
+    <Position X="10.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lead7.Olimpus.Domain.Config.Modulo">
+    <Position X="2" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAgAAAAAAAAAAAAIAAAAAAAAEAAAA=</HashCode>
+      <FileName>Config\Modulo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Lead7.Olimpus.Domain.TipoObjeto">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAACABCAAAAAA=</HashCode>
+      <FileName>Enumeradores.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

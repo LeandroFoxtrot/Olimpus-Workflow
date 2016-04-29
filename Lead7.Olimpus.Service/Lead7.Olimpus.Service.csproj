@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B77D62BE-DF09-44DC-B27D-F84840DFD01A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lead7.Olimpus.Service</RootNamespace>
+    <AssemblyName>Lead7.Olimpus.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GeneralService.cs" />
+    <Compile Include="Implementations\Business\ParticipanteService.cs" />
+    <Compile Include="Implementations\Config\EmpresaService.cs" />
+    <Compile Include="Implementations\Config\MenuService.cs" />
+    <Compile Include="Implementations\Config\ModuloService.cs" />
+    <Compile Include="Implementations\Config\PerfilService.cs" />
+    <Compile Include="Implementations\Config\UsuarioService.cs" />
+    <Compile Include="Interfaces\Business\IParticipanteService.cs" />
+    <Compile Include="Interfaces\Config\IEmpresaService.cs" />
+    <Compile Include="Interfaces\Config\IMenuService.cs" />
+    <Compile Include="Interfaces\Config\IModuloService.cs" />
+    <Compile Include="Interfaces\Config\IPerfilService.cs" />
+    <Compile Include="Interfaces\Config\IUsuarioService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Implementations\Workflow\" />
+    <Folder Include="Interfaces\Workflow\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lead7.Olimpus.Domain\Lead7.Olimpus.Domain.csproj">
+      <Project>{36e8622d-5756-48f4-b8b0-9be7d4fcf26a}</Project>
+      <Name>Lead7.Olimpus.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lead7.Olimpus.Repository\Lead7.Olimpus.Repository.csproj">
+      <Project>{59156d3e-2071-4114-81e6-a962d4abcaed}</Project>
+      <Name>Lead7.Olimpus.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

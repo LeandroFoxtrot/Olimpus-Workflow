@@ -1,0 +1,116 @@
+﻿body {
+    padding-bottom: 20px;
+    padding-top: 50px;
+}
+
+/* Set padding to keep content from hitting the edges */
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+footer {
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+/* regra para o clear float */
+.cf:before,
+.cf:after {content: " ";display: table;}
+.cf:after {clear: both;}
+.cf {*zoom: 1;}
+
+#lateral 
+{
+	padding: 0 50px 0 0;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	font-size:0.95em;
+	background:rgb(44,62,80);
+	background-image: -moz-linear-gradient( 135deg, rgb(3,8,12), rgb(16,57,79) );
+	background-image: -webkit-linear-gradient( 135deg, rgb(3,8,12), rgb(16,57,79) );
+	background-image: -o-linear-gradient( 135deg, rgb(3,8,12), rgb(16,57,79) );
+	background-image: -ms-linear-gradient( 135deg, rgb(3,8,12), rgb(16,57,79) );
+	background-image: linear-gradient( 135deg, rgb(3,8,12), rgb(16,57,79) );
+	height:100%;
+	overflow:hidden;
+	width:320px; 
+	position:fixed;
+	top:40px;
+	left:-270px;
+}
+
+#lateral:before 
+{
+	z-index:1000;
+	content: url(icone-menu.png);
+	font-size:4em;
+	color:white;
+	position:fixed;
+	left:4px;
+	top:45px;
+}
+
+#lateral:hover:before, #lateral:focus:before 
+{
+    left:-450px
+}
+
+#lateral:hover, #lateral:focus,  #lateral:active  
+{
+	overflow-y:scroll;
+	-moz-transform: translate(270px, 0);
+	-webkit-transform: translate(270px, 0);
+	-o-transform: translate(270px, 0);
+	transform: translate(270px, 0);
+	padding-right:0;
+}	
+
+@media (max-width: 500px) {
+body {margin-left:0;background-size:100% 28em!important;}
+#lateral {
+	padding:0;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	font-size:1.2em;
+	height:100%;
+	overflow:auto;
+	width:100%; 
+	position:static;
+	top:0;
+	left:0;
+	}
+#lateral:before {
+	z-index:1000;
+	width:0;
+	text-align:center;
+	content: "";
+	font-size:0;
+	color:white;
+	position:static;
+	top:0;
+	left:0;
+	display:inline-block; 
+	}
+#lateral:hover, #lateral:focus {
+	overflow:scroll;
+	-moz-transform: none;
+	-webkit-transform: none;
+	-o-transform:none;
+	transform:none;
+	}
+#menu li a {border-bottom:1px solid #ccc;}
+#menu li:first-child a {border-top:1px solid #ccc;}	
+}

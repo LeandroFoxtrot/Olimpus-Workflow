@@ -1,0 +1,71 @@
+﻿@model Lead7.Olimpus.Web.Models.Config.Usuario.LoginModel
+@using MyResources = Lead7.Olimpus.Web.Resources
+
+<div class="container-fluid">
+    <div id="wrapper">
+        <div id="login" class="animate">
+            <section class="login_content" style="border: 1px; border-style: solid; border-color: #C8C8C8; padding-left: 15px; padding-right: 15px">
+                <div style="font-size: 20px; text-align: left;">
+                    <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+                    <span>Login</span>
+                </div>
+                <hr/>
+                @using (Html.BeginForm("DoLogin", "Usuario", FormMethod.Post, new {id = "frmEdit"}))
+                {
+                    <div>
+                        @Html.TextBoxFor(x => x.Usuario, new {placeholder = MyResources.Login.Usuario, required = "true", @class = "form-control"})
+                    </div>
+                    <div>
+                        @Html.PasswordFor(x => x.Senha, new {placeholder = MyResources.Login.Senha, required = "true", @class = "form-control"})
+                    </div>
+                    <div>
+                        <input type="submit" value="@MyResources.Login.Entrar" class="btn btn-default submit"/>
+                        <input type="button" value="@MyResources.Login.Esqueceu" class="btn btn-default submit"/>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+</div>
+
+@if (Model?.Erro != null)
+{
+    <div id="dialog" tabindex="-1" class="modal fade bs-example-modal-sm in" role="dialog" aria-hidden="true" style="display: block;">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-label="Close" type="button" data-dismiss="modal">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                    <h4 class="modal-title">@MyResources.Login.Erro</h4>
+                </div>
+                <div class="modal-body">
+                    @Model.Erro.Mensagem
+                </div>
+                <div class="modal-footer">
+                    <button id="btnclose" class="btn btn-default" type="button" data-dismiss="modal">
+                        @MyResources.Login.Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function() {
+            $('.close').click(function() {
+                $('#dialog').hide();
+            });
+
+            $('#btnclose').click(function () {
+                $('#dialog').hide();
+            });
+
+            $('#main').removeClass('right_col');
+
+            $('#login').css('background', '#F7F7F7');
+        });
+    </script>
+}

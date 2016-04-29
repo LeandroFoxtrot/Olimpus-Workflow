@@ -1,0 +1,79 @@
+﻿@model Lead7.Olimpus.Web.Models.Config.Empresa.EmpresaModel
+@using Lead7.Olimpus.Web.Providers
+@using MyResources = Lead7.Olimpus.Web.Resources
+
+<div class="col-md-12 col-sm-12 col-xs-12" style="width: 70%">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>@MyResources.Empresa.TituloNovo</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("Create", "Empresa", FormMethod.Post, new { @id = "frmNew", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                    <div class="form-group">
+                        @Html.Label(MyResources.Empresa.NomeEmpresa, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NomeEmpresa, new {htmlAttributes = new {@class = "form-control"}})
+                            @Html.ValidationMessageFor(model => model.NomeEmpresa, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(MyResources.Empresa.Logotipo, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.FilePicker("imgBtn", FilterFileType.Image, new { @class="find filestyle custom-file-input" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <a href="#" id="btnSalvar" title="@MyResources.Empresa.Salvar" class="btn btn-app">
+                                <i class="fa fa-save"></i>
+                                <span class="body-content"> @MyResources.Empresa.Salvar</span>
+                            </a>
+                            <a href="@Url.Action("Index", "Empresa")" title="@MyResources.Empresa.Voltar" class="btn btn-app">
+                                <i class="glyphicon glyphicon-log-out"></i>
+                                <span class="body-content"> @MyResources.Empresa.Voltar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/bootstrap-filestyle.js"> </script>
+    <script>
+        $(document).ready(function () {
+            var data = new FormData();
+
+            $('#btnSalvar').click(function (e) {
+                e.preventDefault();
+                $('#frmNew').submit();
+            });
+
+            $('input[type=file]').change(function () {
+                var files = $('.find').get(0).files;
+                if (files.length > 0) {
+                    data.append('imgBtn', files[0]);
+                }
+            });
+        });
+    </script>
+}

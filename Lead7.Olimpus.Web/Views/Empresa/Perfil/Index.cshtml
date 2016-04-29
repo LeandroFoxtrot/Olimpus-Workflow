@@ -1,0 +1,47 @@
+﻿@using MyResources = Lead7.Olimpus.Web.Resources
+@model Lead7.Olimpus.Web.Models.Config.Empresa.EmpresaModel
+
+<div class="x_content">
+    <div class="form-group">
+        <label class="control-label col-md-1 col-sm-1 col-xs-12">@MyResources.Perfil.NomePerfil </label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+            @Html.DropDownListFor(model => model.Perfis, Model.ListaPerfis, new { @class= "select2_single form-control", id="ddlPerfis" })
+        </div>
+        <a id="btnAddPerfil" href="#" title="@MyResources.Empresa.Novo" class="btn btn-default submit">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="body-content"> @MyResources.Empresa.Novo</span>
+        </a>
+    </div>
+    <table class="table table-striped responsive-utilities jambo_table bulk_action">
+        <thead>
+        <tr class="headings">
+            <th class="column-title" style="width: 10%">ID </th>
+            <th class="column-title">@MyResources.Perfil.NomePerfil </th>
+            <th class="column-title no-link last" style="text-align: center; width: 10%">
+                <span class="nobr">@MyResources.Layout.Action</span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (!Model.Perfis.Any())
+        {
+            <tr class="even pointer">
+                <td class="a-center" colspan="5">@MyResources.Perfil.SemRegistros</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model.Perfis)
+            {
+                <tr class="even pointer">
+                    <td class=" " style="vertical-align: middle">@item.Id</td>
+                    <td class=" " style="vertical-align: middle">@item.Nome </td>
+                    <td class=" last" style="text-align: center; vertical-align: middle">
+                        <a href="#" onclick="javascript: confirmar(@item.Id, @Model.Id); " title="@MyResources.Layout.Delete" class="btn btn-default btn-group-xs"><i class="fa fa-remove"></i> @MyResources.Layout.Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
+
